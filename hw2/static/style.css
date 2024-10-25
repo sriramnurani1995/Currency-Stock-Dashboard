@@ -1,8 +1,126 @@
-body       { font-family: "Helvetica", sans-serif; font-size: 20px; color: #008303; }
-a, h1, h2  { color: #00008F; }
-form       { margin:.1em auto; padding:.1em; width: 400px; border: 1px }
-.heading  { font-weight: bold; }
-.page      { margin:.1em auto; padding:.1em; width: 504px;  }
-.entry     { margin-bottom: 2em; padding-bottom: 2em; border-bottom: 1px solid #888; }
-input[type=text] { margin: .5em 0; padding: .5em; font-size: 12px; color: #777; width: 200px;}
-input[type=textarea] { margin: .5em 0; padding: .5em; font-size: 12px; color: #777; width: 200px;}
+/* General body styling */
+body {
+    font-family: "Helvetica", sans-serif;
+    font-size: 18px;  /* Adjusted font size for readability */
+    color: #008303;   /* Green color for text */
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;  /* Light background color for better contrast */
+}
+
+/* Headings and links styling */
+a, h1, h2  {
+    color: #00008F;   /* Navy blue color for headings and links */
+    margin: 20px auto;  /* Centered margin for headings */
+    text-align: center;
+}
+
+/* Main content area */
+.page {
+    margin: 0 auto;
+    padding: 2em;  /* Add padding for better spacing */
+    max-width: 800px;  /* Restrict the width to make it more centered */
+    background-color: #fff;  /* White background for form area */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);  /* Subtle shadow for a professional look */
+    border-radius: 8px;  /* Rounded corners */
+}
+
+/* Styling for the form */
+form {
+    display: flex;
+    flex-direction: column;  /* Stack the form fields vertically */
+    gap: 15px;  /* Add spacing between form fields */
+    padding: 20px;
+    background-color: #fff;  /* White background for form */
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);  /* Slight shadow */
+}
+
+/* Styling for form headings and labels */
+.heading {
+    font-weight: bold;
+    color: #00008F;  /* Navy blue for better contrast */
+}
+
+/* Input field styling */
+input[type=text], textarea {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;  /* Rounded corners for inputs */
+    width: 100%;  /* Full width input fields */
+    box-sizing: border-box;  /* Ensure padding doesn't affect total width */
+    color: #333;  /* Darker text color for inputs */
+    background-color: #f9f9f9;  /* Light background for input fields */
+}
+
+/* Input focus effect for better user interaction */
+input[type=text]:focus, textarea:focus {
+    outline: none;
+    border-color: #008303;  /* Green border on focus */
+    box-shadow: 0px 0px 5px rgba(0, 131, 3, 0.2);  /* Subtle shadow on focus */
+}
+
+/* Button styling */
+input[type=submit] {
+    padding: 12px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #008303;  /* Green background for submit button */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    width: 150px;
+    align-self: flex-start;  /* Align button to the left */
+}
+
+/* Submit button hover effect */
+input[type=submit]:hover {
+    background-color: #005f00;  /* Darker green on hover */
+}
+
+/* Form label styling for better alignment */
+label {
+    font-size: 16px;
+    color: #333;  /* Darker text for labels */
+}
+
+/* Table styling */
+table {
+    width: 90%;  /* Ensure the table takes up most of the available space */
+    border-collapse: collapse;
+    margin: 20px auto;  /* Center the table and give space on sides */
+}
+
+/* Style table headers and cells */
+th, td {
+    padding: 10px 15px;  /* Decent padding for readability */
+    text-align: left;
+    border: 1px solid green;  /* Border for clarity */
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* Optional: Style alternating row colors */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Styling for links */
+a {
+    color: #00008F;
+    text-decoration: underline;
+}
+
+/* Input field styling */
+input[type=text], textarea {
+    margin: .5em 0;
+    padding: .5em;
+    font-size: 12px;
+    color: #777;
+    width: 100%;  /* Ensure inputs take full width of form */
+    box-sizing: border-box;
+}

@@ -1,28 +1,23 @@
 from datetime import date
-from .Model import Model
 import sqlite3
 
-DB_FILE = 'entries.db'  
+DB_FILE = 'entries.db'  # File for storing the SQLite database
 
-class model(Model):
+def get_db_connection():
+    """
+    Creates a new SQLite database connection for each request.
+    Ensures the connection is not shared across threads.
+    """
+    return sqlite3.connect(DB_FILE)
+
+class model:
     def __init__(self):
         """
-        Initializes the database connection and ensures that the necessary tables 
+        Initializes the database connection and ensures the required tables
         (artists, genres, songs) are created if they do not already exist.
-
-        The following tables are created:
-        - artists: Stores artist names, with a UNIQUE constraint to avoid duplicates.
-        - genres: Stores genre names, with a UNIQUE constraint to avoid duplicates.
-        - songs: Stores song information, referencing artists and genres using foreign keys.
-
-        A persistent connection to the SQLite database is established in this method, 
-        and will be reused throughout the lifetime of this instance.
-
-        :raises sqlite3.OperationalError: If there's an issue with the database during 
-                                          table creation or connection.
         """
-        self.conn = sqlite3.connect(DB_FILE)  
-        cursor = self.conn.cursor()
+        connection = get_db_connection()  # Get a new connection for setup
+        cursor = connection.cursor()
 
         # Attempt to check if the 'songs' table exists, create tables if not
         try:
@@ -51,99 +46,101 @@ class model(Model):
                                 FOREIGN KEY (genre_id) REFERENCES genres(id))''')
 
         cursor.close()
+        connection.close()
 
     def add_artist(self, name):
         """
-        Inserts a new artist into the 'artists' table if the artist does not already exist.
-        
-        This method ensures that each artist has a unique name due to the UNIQUE constraint 
-        on the 'name' column. The method inserts the artist and returns the auto-generated 
-        artist ID for use in other operations.
-
-        :param name: The name of the artist to be added.
-        :return: The ID of the newly inserted or existing artist.
-        :raises sqlite3.DatabaseError: If there's an issue with inserting the artist into the database.
+        Inserts a new artist into the 'artists' table if it doesn't already exist.
+        Returns the ID of the existing or newly inserted artist.
         """
-        cursor = self.conn.cursor()  # Reuse the persistent connection
-        cursor.execute('INSERT INTO artists (name) VALUES (?)', (name,))
-        artist_id = cursor.lastrowid
-        self.conn.commit()
-        cursor.close()
+        connection = get_db_connection()  # Get a new connection for this operation
+        cursor = connection.cursor()
+
+        # Attempt to insert the artist
+        cursor.execute("INSERT OR IGNORE INTO artists (name) VALUES (?)", (name,))
+        
+        # Now, check if a new row was inserted
+        if cursor.lastrowid:  # If a new row was inserted, lastrowid will be non-zero
+            artist_id = cursor.lastrowid
+        else:  # If no new row was inserted (insert ignored), fetch the existing artist's ID
+            cursor.execute("SELECT id FROM artists WHERE name = ?", (name,))
+            artist_id = cursor.fetchone()[0]  # Fetch the ID of the existing artist
+
+        connection.commit()  # Commit the transaction
+        cursor.close()  # Close the cursor
+        connection.close()  # Close the connection
+
         return artist_id
 
     def add_genre(self, name):
         """
-        Inserts a new genre into the 'genres' table if it does not already exist.
-        
-        This method ensures that each genre has a unique name due to the UNIQUE constraint 
-        on the 'name' column. If a genre with the given name already exists, it will be ignored.
-
-        :param name: The name of the genre to be added.
-        :return: The ID of the newly inserted or existing genre.
-        :raises sqlite3.DatabaseError: If there's an issue with inserting the genre into the database.
+        Inserts a new genre into the 'genres' table if it doesn't already exist.
+        Returns the ID of the existing or newly inserted genre.
         """
-        cursor = self.conn.cursor()
-        cursor.execute('INSERT OR IGNORE INTO genres (name) VALUES (?)', (name,))
-        genre_id = cursor.lastrowid
-        self.conn.commit()
-        cursor.close()
+        connection = get_db_connection()  # Get a new connection for this operation
+        cursor = connection.cursor()
+
+        # Attempt to insert the genre
+        cursor.execute("INSERT OR IGNORE INTO genres (name) VALUES (?)", (name,))
+
+        # Check if a new row was inserted
+        if cursor.lastrowid:  # New row inserted, get the ID
+            genre_id = cursor.lastrowid
+        else:  # Existing genre, fetch its ID
+            cursor.execute("SELECT id FROM genres WHERE name = ?", (name,))
+            genre_id = cursor.fetchone()[0]
+
+        connection.commit()  # Commit the transaction
+        cursor.close()  # Close the cursor
+        connection.close()  # Close the connection
+
         return genre_id
 
     def add_song(self, title, artist, genre, release_date, lyrics, rating):
         """
         Inserts a new song into the 'songs' table, linking it with the appropriate artist and genre.
 
-        This method first ensures that the artist and genre exist in their respective tables 
-        by calling the 'add_artist' and 'add_genre' methods. The song is then inserted with 
-        references (foreign keys) to the artist and genre.
-
-        :param title: The title of the song.
-        :param artist: The name of the artist performing the song.
-        :param genre: The name of the genre the song belongs to.
-        :param release_date: The release date of the song.
-        :param lyrics: The lyrics of the song.
-        :param rating: The rating of the song (numeric value).
-        :return: None
-        :raises sqlite3.DatabaseError: If there's an issue with inserting the song into the database.
+        :param title: Title of the song.
+        :param artist: Name of the artist.
+        :param genre: Name of the genre.
+        :param release_date: Release date of the song.
+        :param lyrics: Lyrics of the song.
+        :param rating: Rating of the song (can be a float or integer).
         """
         artist_id = self.add_artist(artist)  # Ensure the artist exists
         genre_id = self.add_genre(genre)     # Ensure the genre exists
 
-        cursor = self.conn.cursor()
+        connection = get_db_connection()  # Get a new connection for this operation
+        cursor = connection.cursor()
         cursor.execute('''INSERT INTO songs (title, artist_id, genre_id, release_date, lyrics, rating)
                           VALUES (?, ?, ?, ?, ?, ?)''', 
                           (title, artist_id, genre_id, release_date, lyrics, rating))
-        self.conn.commit()
+        connection.commit()
         cursor.close()
+        connection.close()
 
     def get_all_songs(self):
         """
         Retrieves all songs from the 'songs' table, including associated artist and genre names.
 
-        This method performs an INNER JOIN to combine data from the 'songs', 'artists', and 'genres' 
-        tables, ensuring that only songs with valid artist and genre entries are returned.
-
-        :return: A list of tuples, where each tuple contains the song title, artist name, genre name, 
+        :return: A list of tuples, where each tuple contains the song title, artist name, genre name,
                  release date, lyrics, and rating.
-        :raises sqlite3.DatabaseError: If there's an issue retrieving the songs from the database.
         """
-        cursor = self.conn.cursor()
+        connection = get_db_connection()  # Get a new connection for this operation
+        cursor = connection.cursor()
         cursor.execute('''SELECT songs.title, artists.name AS artist, genres.name AS genre, 
                           songs.release_date, songs.lyrics, songs.rating 
                           FROM songs
-                          INNER JOIN artists ON songs.artist_id = artists.id
-                          INNER JOIN genres ON songs.genre_id = genres.id''')
+                          JOIN artists ON songs.artist_id = artists.id
+                          JOIN genres ON songs.genre_id = genres.id''')
         songs = cursor.fetchall()
         cursor.close()
+        connection.close()
         return songs
 
     def close(self):
         """
-        Closes the persistent connection to the SQLite database.
-
-        This method should be called when the application is finished interacting with the database
-        to ensure that all resources are properly released.
-
-        :return: None
+        Closes the database connection.
+        In this version, each operation gets its own connection, so no persistent connection to close.
         """
-        self.conn.close()  
+        pass  # No need to explicitly close in this case since each method handles connection close
