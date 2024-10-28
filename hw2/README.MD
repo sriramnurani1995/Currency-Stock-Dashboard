@@ -23,9 +23,10 @@ project_folder/
 │   └── style.css                # Custom CSS for the front-end styling
 ├── templates/
 │   ├── layout.html              # Main layout template for the app
-│   ├── index.html               # Home page and view songs page
+│   ├── index.html               # Homepage
 │   ├── sign.html                # Form for adding new songs
 │   ├── update.html              # Form for updating songs
+│   ├── view.html              # Form for Viewing songs   
 ├── app.py                       # Main Flask app routing
 ├── gbmodel/
 │   ├── __init__.py              # Model initialization for database backends
