@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song Library</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+   <nav>
+    <ul class="navbar">
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('view_songs') }}">View Songs</a></li> 
+        <li><a href="{{ url_for('sign') }}">Add Song</a></li>
+    </ul>
+</nav>
+
+
+    <div class="page">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
