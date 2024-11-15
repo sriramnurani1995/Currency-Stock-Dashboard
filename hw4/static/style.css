@@ -1,0 +1,196 @@
+/* General body styling */
+body {
+    font-family: "Helvetica", sans-serif;
+    font-size: 18px;  /* Adjusted font size for readability */
+    color: #008303;   /* Green color for text */
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;  /* Light background color for better contrast */
+}
+
+/* Headings and links styling */
+a, h1, h2  {
+    color: #00008F;   /* Navy blue color for headings and links */
+    margin: 20px auto;  /* Centered margin for headings */
+    text-align: center;
+}
+
+/* Main content area */
+.page {
+    margin: 0 auto;
+    padding: 2em;  /* Add padding for better spacing */
+    width: 100%;  /* Ensure the content takes up full width */
+    max-width: none;  /* Remove width restriction to allow full-width content */
+    background-color: #fff;  /* White background for form area */
+  
+    border-radius: 8px;  /* Rounded corners */
+}
+
+/* Styling for the form */
+form {
+    display: flex;
+    flex-direction: column;  /* Stack the form fields vertically */
+    gap: 15px;  /* Add spacing between form fields */
+    padding: 20px;
+    
+    border-radius: 8px;
+    
+}
+
+/* Styling for form headings and labels */
+.heading {
+    font-weight: bold;
+    color: #00008F;  /* Navy blue for better contrast */
+}
+
+/* Input field styling */
+input[type=text], textarea {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;  /* Rounded corners for inputs */
+    width: 100%;  /* Full width input fields */
+    box-sizing: border-box;  /* Ensure padding doesn't affect total width */
+    color: #333;  /* Darker text color for inputs */
+    background-color: #f9f9f9;  /* Light background for input fields */
+}
+
+/* Input focus effect for better user interaction */
+input[type=text]:focus, textarea:focus {
+    outline: none;
+    border-color: #008303;  /* Green border on focus */
+}
+
+/* Button styling */
+input[type=submit] {
+    padding: 12px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #008303;  /* Green background for submit button */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    width: 150px;
+    align-self: flex-start;  /* Align button to the left */
+}
+
+/* Submit button hover effect */
+input[type=submit]:hover {
+    background-color: #005f00;  /* Darker green on hover */
+}
+
+/* Form label styling for better alignment */
+label {
+    font-size: 16px;
+    color: #333;  /* Darker text for labels */
+}
+
+/* Table styling */
+table {
+    width: 100%;  /* Ensure the table takes up the full width of the screen */
+    border-collapse: collapse;
+    margin: 20px 0;  /* Adjust margin to remove left/right auto centering */
+}
+
+/* Style table headers and cells */
+th, td {
+    padding: 10px 15px;  /* Decent padding for readability */
+    text-align: left;
+    border: 1px solid green;  /* Border for clarity */
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* Optional: Style alternating row colors */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Center the Action buttons inside table cells */
+.action-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;  /* Add spacing between the Edit and Delete buttons */
+}
+
+/* Button styling */
+button {
+    background-color: #f44336;  /* Red background for delete button */
+    color: white;  /* White text */
+    padding: 5px 10px;  /* Add padding to the button */
+    border: none;
+    border-radius: 5px;  /* Slightly rounded corners */
+    cursor: pointer;  /* Pointer cursor on hover */
+}
+
+button:hover {
+    background-color: #d32f2f;  /* Darker red on hover */
+}
+
+/* Edit button styling */
+.edit-button {
+    background-color: #4CAF50;  /* Green background for edit button */
+}
+
+.edit-button:hover {
+    background-color: #45a049;  /* Darker green on hover */
+}
+
+/* Reset margin and padding for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navigation bar styling */
+.navbar {
+    background-color: #34495e;  /* Professional dark color */
+    height: 60px;  /* Fixed height for the navbar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Add subtle shadow for depth */
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    width: 50%;  /* Adjust width for balanced link spacing */
+}
+
+.navbar li {
+    display: inline;
+}
+
+.navbar li a {
+    color: white;
+    text-align: center;
+    padding: 15px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar li a:hover {
+    background-color: #1abc9c;  /* Smooth background color change on hover */
+    color: white;
+    border-radius: 5px;  /* Rounded hover effect */
+}
+
+/* Add padding to the top of the page content to account for the fixed navbar */
+.page {
+    margin-top: 80px;  /* Leave space for the navbar */
+}
+
+/* Styling for active/current page links */
+.navbar li a.active {
+    background-color: #1abc9c;  /* Highlight the current page */
+    border-radius: 5px;
+}
