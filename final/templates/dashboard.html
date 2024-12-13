@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="dashboard-page">
+    <header class="header">
+        <h1>Currency-Adjusted Stock Dashboard</h1>
+        <a href="/">← Back to Home</a>
+    </header>
+    <main>
+        <table class="dashboard-table">
+            <thead>
+                <tr>
+                    <th>Ticker</th>
+                    <th>Price (USD)</th>
+                    <th>Price (EUR)</th>
+                    <th>Price (INR)</th>
+                    <th>Price (GBP)</th>
+                    <th>Recommendation</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for stock in stocks %}
+                <tr>
+                    <td>{{ stock['ticker'] }}</td>
+                    <td>{{ stock['prices']['USD'] }}</td>
+                    <td>{{ stock['prices']['EUR'] }}</td>
+                    <td>{{ stock['prices']['INR'] }}</td>
+                    <td>{{ stock['prices']['GBP'] }}</td>
+                    <td>{{ stock['recommendation'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2024 Currency Stock Dashboard</p>
+    </footer>
+</body>
+</html>

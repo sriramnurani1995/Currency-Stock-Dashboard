@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Stock Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="landing-page">
+    <header class="header">
+        <h1>Welcome to the Currency-Adjusted Stock Dashboard</h1>
+    </header>
+    <main class="landing-content">
+        <h1>Explore Features</h1>
+        <table class="landing-table">
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Dashboard</td>
+                    <td>View currency-adjusted stock prices and recommendations.</td>
+                </tr>
+                <tr>
+                    <td>Top Companies</td>
+                    <td>Analyze trends for the top 10 companies.</td>
+                </tr>
+                <tr>
+                    <td>Real-Time Analysis</td>
+                    <td>Get recommendations based on real-time data.</td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="landing-button" onclick="window.location.href='/dashboard'">View Dashboard</button>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2024 Stock Dashboard</p>
+    </footer>
+</body>
+</html>
