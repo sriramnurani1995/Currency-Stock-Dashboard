@@ -6,6 +6,7 @@ import os
 load_dotenv()
 
 API_KEY= os.getenv("FINNHUB_API_KEY")
+
 TOP_COMPANIES = [
     {"company": "Apple Inc.", "ticker": "AAPL"},
     {"company": "Microsoft Corp", "ticker": "MSFT"},
