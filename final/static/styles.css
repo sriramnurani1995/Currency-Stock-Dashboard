@@ -1,0 +1,292 @@
+/* General Styles for All Pages */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Header */
+.header {
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 36px;
+}
+
+/* Footer */
+.footer {
+    margin-top: 20px;
+    text-align: center;
+    color: #f39c12;
+    font-size: 14px;
+    padding: 10px;
+}
+
+/* Landing Page Styles */
+body.landing-page {
+    background: url('/static/bull-market-statue-stockcake.jpg') no-repeat center center fixed ;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    color: #f39c12;
+}
+
+.landing-content {
+    background: rgba(255, 255, 255, 0.7); /* Semi-transparent background for better readability */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 80%;
+    max-width: 600px;
+}
+
+.landing-content h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.landing-table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+    color: black;
+}
+
+.landing-table th, .landing-table td {
+    border: 1px solid #f39c12;
+    padding: 10px;
+    text-align: center;
+}
+
+.landing-table th {
+    background: rgba(255, 165, 0, 0.1); /* Light orange header background */
+    color: black;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.landing-table tr:nth-child(even) {
+    background: rgba(255, 165, 0, 0.05);
+}
+
+.landing-table tr:nth-child(odd) {
+    background: rgba(255, 165, 0, 0.1);
+}
+
+.landing-button {
+    background: #f39c12;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.landing-button:hover {
+    background: #d35400;
+}
+
+/* Dashboard Page Styles */
+body.dashboard-page {
+    background: #f5f5f5;
+    padding: 20px;
+}
+
+.dashboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px auto;
+}
+
+.dashboard-table th, .dashboard-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.dashboard-table th {
+    background-color: #f39c12;
+    color: white;
+    font-size: 16px;
+}
+
+.dashboard-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.dashboard-table tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+
+/* Search Page */
+body.search-page {
+    text-align: center;
+    padding: 50px;
+}
+
+.search-content form {
+    margin-top: 20px;
+}
+
+.search-content input {
+    padding: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.search-content button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #f39c12;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Search Form in Dashboard */
+.search-form {
+    margin: 20px auto;
+    text-align: center;
+}
+
+.search-form input {
+    padding: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+    width: 250px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.search-form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #f39c12;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-form button:hover {
+    background-color: #e67e22;
+}
+
+/* Company Page Styles */
+.company-page {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.back-link {
+    text-decoration: none;
+    color: #007BFF;
+    font-size: 16px;
+}
+
+.company-title {
+    font-size: 24px;
+    color: #FF8C00;
+}
+
+.company-main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.company-details h2,
+.company-news h2 {
+    font-size: 20px;
+    color: #FF8C00;
+    border-bottom: 2px solid #FF8C00;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.company-details p,
+.company-news p {
+    margin: 5px 0;
+}
+
+.company-website {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.company-website:hover {
+    text-decoration: underline;
+}
+
+.news-list {
+    list-style: none;
+    padding: 0;
+}
+
+.news-item {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.news-link {
+    font-weight: bold;
+    color: #FF8C00;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.news-link:hover {
+    text-decoration: underline;
+}
+
+.news-summary {
+    margin: 10px 0;
+    color: #555;
+}
+
+.news-date {
+    font-size: 14px;
+    color: #888;
+}
+
+.no-news {
+    color: #555;
+    font-style: italic;
+}
+
+
+.darkorange{
+color: #FF8C00
+}
