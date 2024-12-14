@@ -15,7 +15,7 @@
         <section class="company-details">
             <h2>About the Company</h2>
             <p><strong>Industry:</strong> {{ profile['finnhubIndustry'] if 'finnhubIndustry' in profile else 'N/A' }}</p>
-            <p><strong>Market Cap:</strong> {{ profile['marketCapitalization'] if 'marketCapitalization' in profile else 'N/A' }} Billion</p>
+            <p><strong>Market Cap:</strong> {{ profile['marketCapitalization'] if 'marketCapitalization' in profile else 'N/A' }} </p>
             <p><strong>Country:</strong> {{ profile['country'] if 'country' in profile else 'N/A' }}</p>
             <p><strong>Website:</strong> 
                 {% if 'weburl' in profile %}
